@@ -1,6 +1,6 @@
-const mongoose = reqire('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema =new mongoose.schema({
+const userSchema =new mongoose.Schema({
     email:{
         type: String,
         reqire: true,

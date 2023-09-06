@@ -63,5 +63,33 @@ if(req.body.password != req.body.confirm_password ){
 }
 // get the sign in data
 module.exports.createSession=function(req, res){
-    //to-do
-    }
+    //steps to suthenticate
+    
+    
+    // find the user 
+    
+    
+    //handel id user found
+    
+    //handel if password is not matched
+    
+    // handel if user not found
+
+    User.findOne({email:req.body.email})
+    .then(user=>{
+        if(user){
+        
+            if(user.password != req.body.passord){
+                return res.redirect('back');
+            }
+        res.cookie('user_id' , user.id);
+        return res.redirect('/users/profile');
+        }
+        else{
+            return res.redirect('back');
+        }
+    })
+    .catch(err=>{
+        console.log("error while authentication");
+    })
+}

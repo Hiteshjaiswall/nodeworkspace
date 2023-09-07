@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0/codial_development');
+mongoose.connect('mongodb://0.0.0.0/code_dev'); 
 
 const db = mongoose.connection;
 

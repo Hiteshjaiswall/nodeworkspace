@@ -8,18 +8,6 @@ passport.use(new LocalStrategy({
     usernameField: 'email'
 },
 function(email, password, done){
-    //find a user and estabilsh the identity
-    // User.findOne({email:email},function(err, user){
-    //     if(err){
-    //         cosnole.log("error in finding user-->> passport");
-    //     return done(err);
-    //     }
-    // if(!user || user.password!=password){
-    //     console.log('invalid username/ password');
-    //     return done(null, false );
-    // }
-    // return done(null , user);
-    // } )
     User.findOne({ email: email })
     .then(user => {
         if (!user || user.password !== password) {
@@ -44,13 +32,6 @@ passport.serializeUser(function(user, done){
 //deserialised the user from the key in thte cookies
 
 passport.deserializeUser(function(id, done){
-    // User.findById(id, function(err, user){
-    //     if(err){
-    //         console.log("error in finding user-->> passport");
-    //         return done(err);
-    //     }
-    // return done(null, user);
-    // })
     User.findById(id)
   .then(user => {
     if (!user) {
@@ -64,7 +45,21 @@ passport.deserializeUser(function(id, done){
     console.error("Error in finding user:", err);
     return done(err);
   });
-
 });
 
+
+// check if the useer is authenticate
+passport.checkAuthentication=function(req, res, next){
+    if(req.isAuthenticated()){
+      return next();
+    }
+    return res.redirect('/users/sign-in');
+}
+passport.setAuthenticatedUser=function(req, res, next){
+  if (req.isAuthenticated()){
+    //req.user contains current sign in user
+    res.locals.user=req.user;
+  }
+  next();
+}
 module.exports=passport;

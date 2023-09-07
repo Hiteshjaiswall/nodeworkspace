@@ -5,4 +5,3 @@
         title: "Home"
     });
 }
-// module.exports.actionName = function(req, res){}

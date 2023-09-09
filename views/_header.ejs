@@ -1,8 +1,8 @@
-
-<header>
-    Page Header
+<div id =nav>
+<header id="logo">
+    Codiel
 </header>
-<ul>
+<ul id="list">
     <% if (locals.user) { %>
     <li><a href="/users/profile"><%= user.name %></a></li>
     <li>
@@ -17,3 +17,4 @@
     </li>
     <% } %>
 </ul>
+</div>

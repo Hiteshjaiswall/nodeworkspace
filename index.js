@@ -11,7 +11,7 @@ const passport = require('passport');
 const passportLocal = require("./config/passport-local-strategy");
 const MongoStore = require('connect-mongo');
 const sassMiddleware=require('node-sass-middleware');
-
+const Users = require('./models/user');
 // Configure middleware and settings
 app.use(sassMiddleware({
 src:'./assets/scss',

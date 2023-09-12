@@ -1,7 +1,6 @@
         <h1>
             Codeial / <%= title %>
         </h1>
-
         <section id="feed-post">
         <h1>Post</h1>
         <% if (locals.user) { %>
@@ -15,6 +14,11 @@
             <% for(post of posts){%>
             <li>
                 <p>
+                    <small>
+                        <% if(locals.user && locals.user.id==post.user.id){ %>
+                        <a href="/posts/destroy/<%= post.id %>"> delete</a>
+                        <% } %>
+                </small>
                 <%= post.content %>
                 <br>
                 <small>
@@ -30,7 +34,6 @@
                         <input type="submit" value="Add comments">
                     </form>
                     <% } %>
-
                     <div class="post-comments-list">
                     <ul id="'post-comments-<%= post._id %>">
                     <% for(comment of post.comments) { %>
